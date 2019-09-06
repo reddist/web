@@ -47,12 +47,12 @@ section div{
 fieldset{
     display: inline-block;
     vertical-align: top;
-    width: 380px;
+    width: auto;
     height: 40px;
 }
 
 fieldset div{
-    width: 380px;
+    width: auto;
     height: 40px;
 }
 

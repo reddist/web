@@ -314,9 +314,11 @@
 
             <fieldset>
                 <legend>Y</legend>
-                <input name="y" type="text" maxlength="6" placeholder="Введите координату Y" required id="y-text"
-                    <?php echo 'value="' . $_POST["y"] . '"';?> pattern="(-?[0-4]([,.][0-9]+)?)|(5(.0+)?)|(-5(.0+)?)">
-                <label for="y-text"> (-5.0 ... 5.0)</label>
+                <label for="y-text">
+                    <input name="y" type="text" maxlength="6" placeholder="Введите координату Y" required id="y-text"
+                        <?php echo 'value="' . $_POST["y"] . '"';?> pattern="(-?[0-4]([,.][0-9]+)?)|(5(.0+)?)|(-5(.0+)?)">
+                    (-5.0 ... 5.0)&emsp;
+                </label>
             </fieldset>
 
             <fieldset>
@@ -366,9 +368,10 @@
     <footer>
         <?php
             if(!$new_game && !$reopen_page){
-                echo '<span class="time">Текущее время: ' . date("H:i:s, d-m-Y", time() + 60 * (-(double)$_POST["offset"])) . '</span>';
-                echo '<span class="time">Время работы скрипта: ' . round(microtime(true) - $begin, 6) * 1000 . ' ms</span';
+                echo '<p><span class="time">Текущее время: ' . date("H:i:s, d-m-Y", time() + 60 * (-(double)$_POST["offset"])) . '</span>';
+                echo '<span class="time">Время работы скрипта: ' . round(microtime(true) - $begin, 6) * 1000 . ' ms</span></p>';
             }
+            echo '<p><a href="https://github.com/reddist/web/tree/master/weblab1">Репозиторий</a></p>';
             session_close();
         ?>
     </footer>
