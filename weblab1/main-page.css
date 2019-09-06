@@ -1,0 +1,122 @@
+body{
+    font-size: 16px;
+    background: white;
+    margin: 4px 4px;
+}
+
+header{
+    background: rgba(127, 255, 212, 0.3);
+    /*background: rgba(237, 15, 232, 0.4);*/
+    padding: 10px 0;
+    text-align: center;
+    font-size: 1.3em;
+    font-family: fantasy, "Arial", sans-serif;
+    color: #404040;
+}
+
+.img-wrap {
+    position: relative;
+}
+.img-wrap img {
+    position: absolute;
+    width: 100%;
+}
+
+section div{
+    display: inline-block;
+    vertical-align: top;
+    width: 550px;
+    height: 550px;
+}
+
+.result{
+    height: auto;
+}
+
+.message{
+    text-align: center;
+    vertical-align: bottom;
+    width: 50%;
+}
+
+.danger{
+    color: #ff1111;
+
+}
+
+fieldset{
+    display: inline-block;
+    vertical-align: top;
+    width: 380px;
+    height: 40px;
+}
+
+fieldset div{
+    width: 380px;
+    height: 40px;
+}
+
+#hit, #possible-hit{
+    width: 30px;
+    height: 30px;
+    padding-top: 259px;
+    padding-left: 250px;
+}
+
+table{
+    border: 1px solid #000000;
+    horiz-align: center;
+}
+
+th, td{
+    border: 1px solid #000000;
+    padding: 5px 5px;
+}
+
+input[type=text]{
+    text-align: center;
+}
+
+input[type=submit], a{
+    font-size: larger;
+}
+
+label[for=y-text]{
+    padding-left: 4%;
+}
+
+label[for^=check], label[for^=x]{
+    /*margin: 0 3px;*/
+    padding: 1% 0;
+    width: 20px;
+    vertical-align: top;
+    border: white 1px solid;
+}
+
+label[for^=check]:hover, label[for^=x]:hover{
+    /*color: cornflowerblue;*/
+    /*font-size: 24px;*/
+    border: #fc345c 1px solid;
+    border-radius: 10px;
+}
+
+.success{
+    background: rgba( 30, 249, 157, 0.3);
+    /*cornflowerblue*/
+    /*background: rgba(135, 237, 127, 0.5);*/
+    /*#a5bb7f*/
+}
+
+.miss{
+    background: rgba(250, 24, 35, 0.3);
+}
+
+.time{
+    padding: 0 40px;
+}
+
+.footer{
+    text-align: center;
+}
+
+/*#2D92E0*/
