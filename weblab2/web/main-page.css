@@ -1,0 +1,253 @@
+body{
+    font-size: 16px;
+    margin: 0 0;
+}
+
+main {
+    /*background: #c0c0c5;*/
+    background: -webkit-linear-gradient(to top left, powderblue, pink);
+    background: -moz-linear-gradient(to top left, powderblue, pink);
+    background: -o-linear-gradient(to top left, powderblue, pink);
+    background: linear-gradient(to top left, powderblue, pink);
+}
+
+header{
+    /*background: rgba(127, 255, 212, 0.3);*/
+    /*background: rgba(237, 15, 232, 0.4);*/
+    background: rgba(40, 40, 100, 0.8);
+    text-align: center;
+    font-size: 1.3em;
+    font-family: "Monotype Corsiva", cursive;
+    /*color: #404040;*/
+    height: 40px;
+    color: #f0f0f5;
+}
+
+#plane {
+    background: white;
+    margin: calc(50% - 150px);
+}
+
+canvas {
+    border: 1px solid black;
+    border-radius: 30px;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+.main-col {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    /*min-height: calc(100% - 100px - 40px);*/
+}
+
+#canvas-div{
+    min-width: 425px;
+    min-height: 425px;
+    max-width: 500px;
+    max-height: 400px;
+    float: left;
+    margin: 20px 0 20px 50px;
+}
+
+#form-div {
+    min-width: 425px;
+    min-height: 425px;
+    max-width: 500px;
+    max-height: 400px;
+    float: right;
+    margin: 20px 50px 20px 0;
+}
+
+#result-div {
+    width: 90%;
+    min-height: 100px;
+    margin: 20px auto 0;
+}
+
+#canvas-div, #form-div, #result-div {
+    background: antiquewhite;
+    border-radius: 20px;
+}
+
+div {
+    /*border: 1px solid black;*/
+}
+
+footer{
+    min-height: 100px;
+    max-height: 100px;
+    background: #404040;
+    color: #b9b9b9;
+}
+
+a {
+    color: #b0b0b0;
+}
+
+form {
+    width: 95%;
+    height: 250px;
+    margin: calc(35% - 125px) auto 0;
+}
+
+fieldset {
+    border-radius: 7px;
+}
+
+table {
+    width: 80%;
+    margin: 20px 12px 20px 10%;
+    background: -webkit-linear-gradient(to top left, powderblue, pink);
+    background: -moz-linear-gradient(to top left, powderblue, pink);
+    background: -o-linear-gradient(to top left, powderblue, pink);
+    background: linear-gradient(to top left, powderblue, pink);
+}
+table, td, tr {
+    border: 1px solid #b9b9b9;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.refresh{
+    display: inline-block;
+    margin-top: 22px;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.result-table {
+    display: inline-block;
+}
+
+tr {
+    display: table-row;
+}
+
+td {
+    display: table-cell;
+    width: 200px;
+    text-align: center;
+}
+
+input[type=text]{
+    text-align: center;
+    border-radius: 10px;
+}
+
+/*
+.img-wrap {
+    position: relative;
+}
+.img-wrap img {
+    position: absolute;
+    width: 100%;
+}
+
+section div{
+    display: inline-block;
+    vertical-align: top;
+    width: 550px;
+    height: 550px;
+}
+
+.result{
+    height: auto;
+}
+
+.message{
+    text-align: center;
+    vertical-align: bottom;
+    width: 50%;
+}
+
+.danger{
+    color: #ff1111;
+
+}
+
+fieldset{
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    height: 40px;
+}
+
+fieldset div{
+    width: auto;
+    height: 40px;
+}
+
+.special-y{
+    width: auto;
+    height: 40px;
+    white-space: nowrap;
+}
+
+#hit, #possible-hit{
+    width: 30px;
+    height: 30px;
+    padding-top: 259px;
+    padding-left: 250px;
+}
+
+table{
+    border: 1px solid #000000;
+    horiz-align: center;
+}
+
+th, td{
+    border: 1px solid #000000;
+    padding: 5px 5px;
+}
+
+input[type=text]{
+    text-align: center;
+}
+
+input[type=submit]{
+    font-size: larger;
+}
+
+label[for=y-text]{
+    padding-left: 4%;
+}
+
+label[for^=check], label[for^=x]{
+    padding: 1% 0;
+    width: 20px;
+    vertical-align: top;
+    border: white 1px solid;
+}
+
+label[for^=check]:hover, label[for^=x]:hover{
+    color: cornflowerblue;
+    border: #fc345c 1px solid;
+    border-radius: 10px;
+}
+*/
+.success{
+    background: rgba( 30, 249, 157, 0.3);
+    /*cornflowerblue*/
+    /*background: rgba(135, 237, 127, 0.5);*/
+    /*#a5bb7f*/
+}
+
+.miss{
+    background: rgba(250, 24, 35, 0.3);
+}
+
+/*#2D92E0*/
