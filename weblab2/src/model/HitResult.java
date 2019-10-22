@@ -27,7 +27,7 @@ public class HitResult {
         }
 
         if(x <= 0 && y <= 0) {
-            checkResult = checkResult && ((x*x + y*y) <= r*r);
+            checkResult = checkResult && ((x*x + y*y) <= (r*r / 4.0D));
         }
 
         if(x <= 0 && y >= 0) {

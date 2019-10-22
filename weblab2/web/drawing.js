@@ -213,10 +213,6 @@ function getHits() {
     });
 }
 
-// Шоссе революции, д 41 дробь 39
-// Улица льва толстого, дом 4
-// Проспект просвещения, дом 60 к 1
-
 function drawHits(hits) {
     lastHits = hits;
     if (canvas.getContext) {

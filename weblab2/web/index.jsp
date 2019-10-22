@@ -83,7 +83,7 @@
             <p style="margin: 0 0;">Aleksey Vaskin
             <br>erddist@gmail.com
             <br><a href="https://vk.com/reddist">vk.com/reddist</a>
-            <br><a href="https://github.com/reddist/web/tree/master/weblab1">Github</a>
+            <br><a href="https://github.com/reddist/web/tree/web/weblab2">Github</a>
             </p>
         </div>
         <script type="text/javascript">
