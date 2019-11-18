@@ -1,0 +1,7 @@
+reddist\HitsDAO.class
+reddist\HitsService.class
+reddist\FormBean.class
+utils\SessionFactoryUtil.class
+reddist\HitResult.class
+reddist\HitsEntity.class
+reddist\IncorrectCoordinateException.class
