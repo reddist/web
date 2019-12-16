@@ -20,18 +20,18 @@ public class HitResult {
     private void checkArea() {
         if(!checkParams()) return;
 
-        boolean checkResult = true;
+        boolean checkResult = false;
 
         if(x >= 0 && y <= 0) {
             checkResult = y >= (x - r);
         }
 
         if(x <= 0 && y <= 0) {
-            checkResult = checkResult && ((x*x + y*y) <= (r*r / 4.0D));
+            checkResult = checkResult || ((x*x + y*y) <= (r*r / 4.0D));
         }
 
         if(x <= 0 && y >= 0) {
-            checkResult = checkResult && (y <= r) && ( x >= -r);
+            checkResult = checkResult || (y <= r) && ( x >= -r);
         }
 
         checkResult &= !(x > 0 && y > 0);
@@ -46,7 +46,7 @@ public class HitResult {
     private boolean checkParams(){
         try {
             x = Double.parseDouble(stringX);
-            if(x >= 5.0 || x <= -3.0) {
+            if(x > 4.0 || x < -4.0) {
                 result = "Некорректное значение x";
                 return false;
             }

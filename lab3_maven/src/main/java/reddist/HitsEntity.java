@@ -5,7 +5,7 @@ import jdk.nashorn.internal.objects.annotations.Getter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "hits")
+@Table(name = "hits_reddist")
 public class HitsEntity {
     private Double x;
     private Double y;

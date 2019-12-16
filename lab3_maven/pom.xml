@@ -10,6 +10,7 @@
 
     <name>lab3_maven</name>
     <packaging>war</packaging>
+    <build><finalName>lab3</finalName></build>
 
     <dependencies>
         <dependency>

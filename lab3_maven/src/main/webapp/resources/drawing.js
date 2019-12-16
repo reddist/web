@@ -1,5 +1,8 @@
 let canvas = document.getElementById("plane");
-let lastHits;
+//let jsonData = document.getElementById("updateJsonForm:jsonData").value;
+//let lastHits;
+let currentRadius = 0;
+let lastRadius = 0;
 
 function drawWithRadius(radius) {
     if (canvas.getContext) {
@@ -123,7 +126,7 @@ function drawWithRadius(radius) {
         context.fillStyle = 'rgb(0, 0, 0)';
 
 
-            // X-Text from left to right
+        // X-Text from left to right
         for(let i = 0; i < 5; i++){
             x = axisXLines[i].x;
             y = axisXLines[i].y;
@@ -136,7 +139,7 @@ function drawWithRadius(radius) {
         }
 
 
-            // Y-Text from up to down
+        // Y-Text from up to down
         for(let j = 0; j < 5; j++){
             x = axisYLines[j].x;
             y = axisYLines[j].y;
@@ -157,164 +160,103 @@ function drawWithRadius(radius) {
         context.fillText("0", 141, 161);
         context.closePath();
 
+        // Permitted zone
+        context.fillStyle = 'rgba(200, 0, 0, 0.1)';
+        context.fillRect(0, 0, 70, 300);
+        context.fillRect(230, 0, 70, 300);
+        context.fillRect(70, 0, 160, 50);
+        context.fillRect(70, 210, 160, 90);
 
         // Last hits from application context
         getHits();
     }
 }
 
-//------------------ On changing radius (down) --------------------- (correct)
-let radius = document.getElementsByName("form:radius");
-let hiddenRadius = document.getElementById("hiddenForm:rCanvas");
-let currentRadius = 0;
-
 drawWithRadius(0);
 
-for(let i = 0; i < radius.length; i++) {
-    radius[i].onchange = function () {
-        currentRadius = Number(radius[i].value);
-        hiddenRadius.value = currentRadius;
-        drawWithRadius(currentRadius);
-    };
+function drawFromJSF(){
+    //updateCurrentRadius();
+    drawWithRadius(currentRadius);
 }
 
-//------------------- Posting on button -----------------------------
-
-let submit = document.getElementById("form:shoot");
-let resultTableSpan = document.getElementById("result-table-span");
-
-document.getElementById("form").addEventListener("keydown", {
-    handleEvent(event) {
-        if (event.key === "Enter") {
-            submit.click();
-        }
+function resultOfHit(x, y){
+    let r = currentRadius;
+    let checkResult = false;
+    if(x >= 0 && y <= 0) {
+        checkResult = y >= (x - r);
     }
-});
-
-submit.onclick = function(){
-    refresh.style.display = "none";
-    resultTableSpan.innerHTML = '<img src="resources/loading.gif" style="width: 160px; margin: 20px calc(50% - 80px); border-radius: 10px;" alt="Loading...">';
-    drawWithRadius();
-};
+    if(x <= 0 && y <= 0) {
+        checkResult = checkResult || ((x*x + y*y) <= (r*r / 4.0));
+    }
+    if(x <= 0 && y >= 0) {
+        checkResult = checkResult || (y <= r) && ( x >= -r);
+    }
+    checkResult &= !(x > 0 && y > 0);
+    checkResult &= ((x <= 4.0) && (x >= -4.0)) && ((y < 5.0) && (y > -3.0));
+    return checkResult;
+}
 
 function getHits() {
+    //updateJsonData();
+    //jsonData = document.getElementById("updateJsonForm:jsonData").value;
+    //console.log(jsonData);
+    //drawHits(JSON.parse(jsonData));
     /*$.get('index', {getHits : "true"},
         function(data) {
             console.log(data);
             drawHits(JSON.parse(data));
     });*/
+
+    let rows = $('.result-table tbody tr');
+    let rowString, x, y, r, color;
+    let context = canvas.getContext('2d');
+    rows.each(function (row) {
+        rowString = "";
+        $(this).find('td').each(function () {
+            rowString += $(this).html().toString().replace(/\s+/g,'')+" ";
+        });
+        rowString=rowString.replace('<br>','');
+        if(!(rowString.replace(/\s+/g,'')==="")){
+            x = rowString.toString().split(' ')[0];
+            y = rowString.toString().split(' ')[1];
+            r = rowString.toString().split(' ')[2];
+            if(resultOfHit(x, y)) {
+                color = "#0aff0a";
+            } else {
+                color = "#ff0a0a";
+            }
+        }
+        context.beginPath();
+        context.arc(150 + x / 5.0 * 100,
+            150 - y / 5.0 * 100,
+            1.5, 0, 2 * Math.PI);
+
+        context.fillStyle = color;
+        context.fill();
+        context.closePath();
+    });
 }
 
-function drawHits(hits) {
+/*function drawHits(hits) {
     lastHits = hits;
     if (canvas.getContext) {
         let context = canvas.getContext('2d');
-        let hit, hitX, hitY;
+        let hit, hitX, hitY, hitColor;
         for(let i = 0; i < hits.size; i++) {
             hit = hits["hit" + i];
             hitX = hit.x;
             hitY = hit.y;
+            hitColor = hit.color;
             context.beginPath();
             context.arc(150 + hitX / 5.0 * 100,
-                        150 - hitY / 5.0 * 100,
-                    1.5, 0, 2 * Math.PI);
+                150 - hitY / 5.0 * 100,
+                1.5, 0, 2 * Math.PI);
 
-            context.fillStyle = 'rgb(255, 0, 0)';
+            context.fillStyle = hitColor;
             context.fill();
             context.closePath();
         }
     }
-}
-
-// ------------------------------ Refresh and Delete (down) ----------------------------------- (correct)
-
-let refresh = document.getElementById("refresh");
-let reset = document.getElementById("delete");
-let updateTableButton = document.getElementById("updateForm:update-table");
-let resetTableButton = document.getElementById("resetForm:reset-table");
-
-refresh.onclick = function () {
-    updateTableButton.click();
-    console.log("updated");
-};
-
-reset.onclick = function () {
-    resetTableButton.click();
-    console.log("deleted");
-};
-
-//------------------------------ Shoot on click (down) -----------------------------
-
-let canvasCoordinates = canvas.getBoundingClientRect();
-let xOnHover = document.getElementById("x-onHover-canvas");
-let yOnHover = document.getElementById("y-onHover-canvas");
-let xCanvas = document.getElementById("hiddenForm:xCanvas");
-let yCanvas = document.getElementById("hiddenForm:yCanvas");
-canvas.onmousemove = function(event){
-    canvasCoordinates = canvas.getBoundingClientRect();
-    let hitX = event.clientX - canvasCoordinates.left;
-    let hitY = event.clientY - canvasCoordinates.top;
-    let doubleX = (hitX - 150) / 20.0;
-    let doubleY = (150 - hitY) / 20.0;
-    xOnHover.innerHTML = String(doubleX.toPrecision(3));
-    yOnHover.innerHTML = String(doubleY.toPrecision(3));
-};
-
-canvas.onmouseleave = function(){
-    xOnHover.innerHTML = "";
-    yOnHover.innerHTML = "";
-};
-
-let shootOnCanvas = document.getElementById("hiddenForm:shootCanvas");
-
-canvas.onclick = function (event) {
-    console.log("clicked");
-    canvasCoordinates = canvas.getBoundingClientRect();
-    let hitX = event.clientX - canvasCoordinates.left;
-    let hitY = event.clientY - canvasCoordinates.top;
-    let doubleX = (hitX - 150) / 20.0;
-    let doubleY = (150 - hitY) / 20.0;
-    xCanvas.value = String(doubleX.toPrecision(4));
-    yCanvas.value = String(doubleY.toPrecision(4));
-    shootOnCanvas.click();
-    /*$.post('index',
-        {"x" : doubleX,
-            "y" : doubleY,
-            "r" : radius.options.selectedIndex + 1
-        },
-        function (data) {
-            changeTable(data);
-            getHits();
-            refresh.style.display = "inline-block";
-        });*/
-};
-
-//------------------------------- Y validation -------------------------------
-
-let input_y = document.getElementById("form:y-text");
-
-let pattern = /^((-?[0-2])|([0-5]))(\.[0-9]+)?$/;
-
-function validate(text_input){
-    if(!pattern.test(text_input.value)){
-        text_input.style.background = 'rgba(230, 10, 10, 0.25)';
-    } else {
-        text_input.style.background = 'rgb(255, 255, 255)';
-    }
-    submit.disabled = !pattern.test(input_y.value);
-}
-
-input_y.oninput = function (){
-    validate(input_y);
-};
-
-
-window.addEventListener("load", {
-    handleEvent(event) {
-        drawWithRadius(currentRadius);
-    }
-});
-
-
+}*/
 
 

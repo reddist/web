@@ -6,7 +6,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
     <title>Лабораторная №3 по web-программированию</title>
@@ -19,41 +20,26 @@
         <p style="padding-top: 10px; margin: 0 0;">
             <strong>ФИО:</strong> Васькин Алексей Андреевич&emsp;
             <strong>Группа:</strong> P3200&emsp;
-            <strong>Вариант:</strong> 200022
+            <strong>Вариант:</strong> 200028
         </p>
     </div>
+    <h:form>
+        <h:commandLink action="index?faces-redirect=true" style="color: rgb(223, 223, 235); text-decoration: none;">
+            <div class="back-button"><p style="margin: 9.75px 0 0 0; font-size:16.5px">&lt; Вернуться</p></div>
+        </h:commandLink>
+    </h:form>
     <div class="main">
         <div class="main-col">
-            <h:form id="resetForm" style="display: none;">
-                <h:commandButton id="reset-table" action="#{formBean.deleteHits(session.id)}">
-                    <f:ajax execute="resetForm" render="hitsTable" />
-                </h:commandButton>
-            </h:form>
-            <h:form id="updateForm" style="display: none;">
-                <h:commandButton id="update-table" action="#{formBean.getHitsById(session.id)}">
-                    <f:ajax execute="updateForm" render="hitsTable" />
-                </h:commandButton>
-            </h:form>
-            <h:form id="hiddenForm" name="hiddenF1" style="display: none;">
-                <h:inputText id="xCanvas" value="#{formBean.x}"/>
-                <h:inputText id="yCanvas" value="#{formBean.y}"/>
-                <h:inputText id="rCanvas" value="#{formBean.r}"/>
-                <br />
-                <h:commandButton value="Спрятанный выстрел!" id="shootCanvas" class="shoot"
-                                 action="#{formBean.addHit(session.id, 'hiddenForm')}">
-                    <f:ajax execute="hiddenForm" render="hitsTable"/>
-                    <f:ajax render="hiddenMessage"/>
-                </h:commandButton>
-            </h:form>
             <div id="canvas-and-form-col" class="clearfix">
                 <div id="canvas-div">
                     <canvas id="plane" width="300" height="300">Canvas is not supported.</canvas>
                     <p style="text-align: center; padding-top: 10px; width: 100%; margin: 0 0;">
-                        X: <span id="x-onHover-canvas"></span> Y: <span id="y-onHover-canvas"></span>
+                        X: <span id="x-onHover-canvas" /> Y: <span id="y-onHover-canvas" />
                     </p>
+                    <script type="text/javascript" src="resources/drawing.js"></script>
                 </div>
                 <div id="form-div">
-                    <h:form name="f1" id="form">
+                    <h:form id="form" styleClass="form" name="f1">
                         <h:panelGrid columns="2" cellpadding="5">
                             <p:outputLabel for="x" value="X:"/>
                             <p:selectOneRadio id="x" value="#{formBean.x}" layout="grid" columns="3">
@@ -63,7 +49,9 @@
 
                         <h:panelGrid columns="2" cellpadding="5">
                             <h:outputLabel for="y-text" value="Y: "/>
-                            <h:inputText id="y-text" value="#{formBean.y}"/>
+                            <table><tr><td>
+                                <h:inputText id="y-text" value="#{formBean.y}" pt:placeholder="(-3 ; 5)"/>
+                            </td></tr></table>
                         </h:panelGrid>
 
                         <h:panelGrid columns="2" cellpadding="5">
@@ -76,51 +64,100 @@
                         <br/>
                         <h:commandButton value="Выстрел!" id="shoot" class="shoot"
                                          action="#{formBean.addHit(session.id, 'form')}">
-                            <f:ajax execute="form" render="hitsTable" />
-                            <f:ajax render="hiddenMessage"/>
+                            <f:ajax event="action" execute="form" render="resultLabel" />
                         </h:commandButton>
                     </h:form>
+                    <div class="undisplayed">
+                        <h:form id="resetForm">
+                            <h:commandButton id="reset-table" action="#{formBean.deleteHits(session.id)}" >
+                                <f:ajax event="action" execute="resetForm" render="resultLabel" />
+                            </h:commandButton>
+                        </h:form>
+                    </div>
+                    <div class="undisplayed">
+                        <h:form id="updateForm">
+                            <h:commandButton value="Обновить" id="update-table"
+                                             action="#{formBean.getHitsById(session.id)}">
+                                <f:ajax event="action" execute="updateForm" render="resultLabel" />
+                            </h:commandButton>
+                        </h:form>
+                    </div>
+                    <div class="undisplayed">
+                        <h:form id="hiddenForm" name="f2">
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputLabel for="xCanvas" value="X: " />
+                                <h:inputText id="xCanvas" value="#{formBean.hiddenX}"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputLabel for="yCanvas" value="Y: " />
+                                <h:inputText id="yCanvas" value="#{formBean.hiddenY}"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputLabel for="rCanvas" value="R: " />
+                                <h:inputText id="rCanvas" value="#{formBean.r}"/>
+                            </h:panelGrid>
+                            <br />
+                            <h:commandButton value="Спрятанный выстрел!" id="shootCanvas" class="shoot"
+                                             action="#{formBean.addHiddenHit(session.id, 'hiddenForm')}">
+                                <f:ajax event="action" execute="hiddenForm" render="resultLabel"/>
+                            </h:commandButton>
+                        </h:form>
+                    </div>
                 </div>
             </div>
+
             <div id="result-div">
-                <p id="hiddenMessage" class="danger" style="text-align: center; padding-top: 10px; width: 100%; margin: 0 0;
+                <p:outputLabel id="resultLabel">
+                    <p id="hiddenMessage" class="danger" style="text-align: center; padding-top: 10px; width: 100%; margin: 0 0;
                                                                 display: #{formBean.hiddenMessageDisplay}">${formBean.hiddenMessage}</p>
-                <span id="result-table-span">
-                    <h:panelGroup id="hitsTable">
-                        <h:dataTable value="#{formBean.hits}" var="hit" styleClass="result-table">
-                            <h:column>
-                                <f:facet name="header">X</f:facet>
-                                ${hit.x}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Y</f:facet>
-                                ${hit.y}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">R</f:facet>
-                                ${hit.r}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Result</f:facet>
-                                ${hit.result}
-                            </h:column>
-                        </h:dataTable>
-                    </h:panelGroup>
-                </span>
-                <img src="resources/reset.png" width="23" class="refresh" id="refresh" alt="reset" />
-                <img src="resources/red-cross.png" width="23" class="delete" id="delete" alt="delete" />
+                    <span id="result-table-span">
+                        <h:panelGroup id="hitsTable">
+                            <h:dataTable value="#{formBean.hits}" var="hit" styleClass="result-table">
+                                <h:column>
+                                    <f:facet name="header">X</f:facet>
+                                    ${hit.x}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Y</f:facet>
+                                    ${hit.y}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">R</f:facet>
+                                    ${hit.r}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Result</f:facet>
+                                    ${hit.result}
+                                </h:column>
+                            </h:dataTable>
+                        </h:panelGroup>
+                    </span>
+                    <script type="text/javascript">drawFromJSF();</script>
+                </p:outputLabel>
+                    <img src="resources/update-arrow.png" width="23" class="refresh" id="refresh" alt="reset" />
+                    <img src="resources/delete-red-cross.png" width="23" class="delete" id="delete" alt="delete" />
             </div>
         </div>
-
-        <script src="resources/drawing.js" type="text/javascript"></script>
     </div>
+    <script src="resources/form-actions.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        for(let i in [0, 1, 2, 3, 4]) {
+            radius[i].onchange = function () {
+                currentRadius = Number(radius[i].value);
+                lastRadius = currentRadius;
+                hiddenRadius.value = currentRadius;
+                // updateJsonData();
+                drawWithRadius(currentRadius);
+            };
+        }
+    </script>
     <div class="footer clearfix">
         <div style="float: left; margin: 10px 0 0 10px;"><span id="dateTime">Время</span></div>
         <div style="float: right; text-align: right; margin: 10px 5px 0 0;">
             <p style="margin: 0 0;">Aleksey Vaskin
                 <br/>erddist@gmail.com
                 <br/><a href="https://vk.com/reddist">vk.com/reddist</a>
-                <br/><a href="https://github.com/reddist/web/tree/web/weblab2">Github</a>
+                <br/><a href="https://github.com/reddist/web/tree/master/lab3_maven">Github</a>
             </p>
         </div>
         <script type="text/javascript" src="resources/clock.js"></script>
