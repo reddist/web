@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset = "UTF-8" lang = "rus">
+  <title> Лабораторная 4</title>
+</head>
+<body style = "background-size: 100%;">
+<p-toast position="top-right"></p-toast>
+<form style = "margin-bottom: 3%">
+  <button id = "logout" label="Выйти" name="logout" pButton type="button" class="ui-button-warning"
+    (click)="logout()" routerLink="../welcome"></button>
+</form>
+<app-canvas #canvas [points]="points" (updatePoints)="updatePoints($event)"></app-canvas>
+<app-coordinates #coordinates
+                 (updatePoints)="updatePoints($event)"
+                 (deletePointsEmitter)="deletePoints($event)"
+                 (changedR)="canvas.draw($event)"></app-coordinates>
+<form>
+    <button id = "refresh" label="Обновить" pButton type="button" class="ui-button-warning" (click)="getPoints()"></button>
+    <button id = "delete" label="Удалить точки" pButton type="button" class="ui-button-warning" (click)="deletePoints(true)"></button>
+</form>
+  <app-table [points]="points"></app-table>
+  <br><br><br>
+</body>
+
+</html>

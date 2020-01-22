@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Лабораторная 4</title>
+  <meta charset="UTF-8" lang = "rus">
+  <base href="/welcome/" />
+</head>
+<body style = "background-size: 100%;">
+<p-toast position="top-right"></p-toast>
+<div class = "text" >
+  <p style="font-size: 25px">Лабораторная работа 4. <br>Камышанская Ксения и Гогидзе Полина, гр.Р3212, в.131314</p>
+  <form><button id = "auth-btn" class="ui-button-warning" pButton label = "Авторизация" scrollTo = "authorization"></button></form>
+</div>
+<div class = "text" id = "authorization" #authorization>
+  <form #authForm="ngForm" (ngSubmit)="login(authForm)">
+    <div class="ui-inputgroup grid-item">
+      <mat-form-field>
+<!--        <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>-->
+<!--        <input id = "login" name = "username" class = "input" type="text" pInputText placeholder="Логин (email)" [(ngModel)]="username"/>-->
+        <input  id = "login" name = "username" class = "input" matInput type="text" pInputText placeholder="Логин (email)" [(ngModel)]="username"/>
+      </mat-form-field>
+    </div>
+    <div class="ui-inputgroup grid-item">
+      <mat-form-field>
+<!--        <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>-->
+<!--        <input id = "password" name = "password" class = "input" type="password" placeholder="Пароль" pInputText [(ngModel)]="password"/>-->
+        <input id = "password" name = "password" class = "input" matInput type="password" placeholder="Пароль" pInputText [(ngModel)]="password"/>
+      </mat-form-field>
+    </div>
+    <div class="p-grid p-justify-center" id="login-div">
+      <div class="p-col-7 btn-login">
+        <button id = "enter" label="Войти" mat-raised-button color="primary" pButton type="submit" class="ui-button-warning" icon="pi pi-arrow-right"></button>
+<!--        <button id = "enter" label="Войти" mat-raised-button color="primary" pButton type="submit" class="ui-button-warning"></button>-->
+<!--        <button id = "enter" label="Войти" pButton type="submit" class="ui-button-warning"></button>-->
+      </div>
+    </div>
+  </form>
+  <app-registration></app-registration>
+</div>
+</body>
+</html>

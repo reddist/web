@@ -1,0 +1,69 @@
+#coordinates{
+  font-family: Alumna;
+  display: inline-block;
+  float: right;
+  font-size: 23px;
+  color: azure;
+  background: darkgoldenrod;
+  /*width: 450px;*/
+  height: 450px;
+  /*margin-left: 60%;*/
+  /*margin-top: -563px;*/
+  margin-right: 7%;
+  margin-bottom: 7%;
+  border: 2px solid azure;
+}
+
+span{
+  font-size: 27px;
+  /*text-decoration: bolder;*/
+}
+
+:host ::ng-deep .prime-slider-override {
+  /*background-color: darkslategray;*/
+  display: inline-block;
+  width: 14em;
+  margin: 5px 15px 5px 20px;
+}
+
+:host ::ng-deep .prime-slider-override .ui-slider-range {
+  background: darkslategray;
+}
+
+:host ::ng-deep p-radioButton .ui-radiobutton .ui-state-active  {
+  background-color: darkslategray;
+  border-color: blanchedalmond;
+}
+
+:host ::ng-deep p-radioButton .ui-radiobutton .ui-state-focus {
+  background-color: darkslategray;
+  border-color: blanchedalmond;
+}
+
+.ui-button-warning{
+  background: darkslategray;
+  color: azure;
+  font-size: 30px;
+  cursor: pointer;
+  font-family: Alumna;
+  width: 182px;
+  margin-left: calc(50% - 91px);
+  border: 2px solid blanchedalmond;
+}
+
+.possible-hit {
+  display: -webkit-box;
+  align-items: center;
+  justify-content: center;
+}
+
+tr, td {
+  /*border: 2px solid blanchedalmond;*/
+  align-items: center;
+  justify-content: center;
+  padding-right: 8px;
+}
+
+:host ::ng-deep .ui-radiobutton-label {
+  margin-left: 3px;
+}

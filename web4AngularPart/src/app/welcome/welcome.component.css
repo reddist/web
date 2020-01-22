@@ -1,0 +1,85 @@
+.text{
+  background: darkgoldenrod;
+  margin: 10% calc(-75px + 30%);
+  display: inline-block;
+  font-size: 30px;
+  color:azure;
+  font-family: Alumna;
+  padding: 20px;
+  width: calc(150px + 40%);
+}
+@font-face {
+  font-family: Alumna;
+  src: url(../fonts/ALS-Alumna.otf);
+}
+body {
+  height: 100%;
+  background: url(../patterns/anotherside.png) repeat repeat center center fixed;
+  /*-webkit-background-size: cover;*/
+  /*-moz-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-size: cover;*/
+}
+#authorization{
+  margin-top: 30%;
+  margin-bottom: 10%;
+}
+#auth-btn{
+  background: transparent;
+  font-size: 22px;
+  text-decoration: none;
+  color: azure;
+  cursor: pointer;
+  border: none;
+  font-family: Alumna;
+}
+#enter{
+  background: transparent;
+  color: azure;
+  font-size: 30px;
+  cursor: pointer;
+  border: none;
+  font-family: Alumna;
+}
+
+.input{
+  /*width: 100%;*/
+  font-family: Alumna;
+  font-size: 20px;
+}
+input::-webkit-input-placeholder {
+  color: darkgoldenrod;
+}
+.grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.btn-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#login-div{
+  margin-bottom: 5px;
+}
+
+:host ::ng-deep .mat-form-field{
+  width: calc(37% + 120px);
+  font-family: Alumna;
+}
+
+:host ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0.5em;
+}
+
+:host ::ng-deep .mat-form-field-underline {
+  position: static;
+}
+
+:host ::ng-deep .mat-form-field-label {
+  margin-top: 3px;
+  margin-left: 5px;
+}

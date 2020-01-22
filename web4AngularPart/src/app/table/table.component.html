@@ -1,0 +1,24 @@
+<div id = "divresults">
+  <p-table [scrollable]="true" scrollHeight="170px" [value]="points" id = "table">
+    <ng-template pTemplate="caption">
+      Список точек
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>X</th>
+        <th>Y</th>
+        <th>R</th>
+        <th>Result</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-point>
+      <tr>
+        <td>{{point.x}}</td>
+        <td>{{point.y}}</td>
+        <td>{{point.r}}</td>
+        <td>{{point.result}}</td>
+<!--        <td>{{point.result | booleanToText}}</td>-->
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

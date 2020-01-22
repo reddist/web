@@ -1,0 +1,19 @@
+<div style="text-align: center" id="popupWin" class="modalwin">
+  <br>
+  <form #authForm="ngForm" (ngSubmit)="register(authForm)">
+    <input name = "email" id = "Remail" class = "input" type="text" pInputText  placeholder="email" [(ngModel)]="email"/>
+    <input name = "username" id = "Rlogin" class = "input" type="text" pInputText  placeholder="login" [(ngModel)]="username"/>
+    <input name = "password" id = "Rpassword" class = "input" type="password" pInputText placeholder="password" [(ngModel)]="password"/>
+    <button id = "register" label="Регистрация" pButton type="submit" class="ui-button-warning" icon=""></button>
+<!--    <button id = "register" label="Регистрация" pButton type="submit" class="ui-button-warning" icon="pi pi-user-plus"></button>-->
+    <p id = "message"> </p>
+  </form>
+</div>
+<form>
+  <div class="p-grid p-justify-center">
+    <div class="p-col-7 btn-register">
+      <button id = "registration" label="Регистрация" mat-raised-button color="warn" pButton type="button" class="ui-button-warning" (click) = "showModalWin()"></button>
+<!--      <button id = "registration" label="Регистрация" pButton type="button" class="ui-button-warning" (click) = "showModalWin()" icon="pi pi-user-plus"></button>-->
+    </div>
+  </div>
+</form>

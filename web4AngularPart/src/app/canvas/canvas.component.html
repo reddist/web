@@ -1,0 +1,9 @@
+<!--<div class = "canvas" id = "canvasDiv"
+     [style.width.px] = "canvasWidth" [style.height.px] = "canvasHeight"
+     style = "background: darkgoldenrod; display: inline-block; float: left;">
+  <canvas #canvas id = "canvas" [width] = "canvasWidth" [height] = "canvasHeight" (window:resize)="onResize()" (click)="submitOnClick($event)"></canvas>
+</div>-->
+<div class = "canvas" id = "canvasDiv"
+     style = "background: darkgoldenrod; display: inline-block; float: left;">
+  <canvas #canvas id = "canvas" width="450" height="450" (window:resize)="onResize()" (click)="submitOnClick($event)"></canvas>
+</div>

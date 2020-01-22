@@ -1,0 +1,58 @@
+.ui-button-warning{
+  background: transparent;
+  color: azure;
+  font-size: 30px;
+  cursor: pointer;
+  border: none;
+  font-family: Alumna;
+}
+.input{
+  font-family: Alumna;
+}
+@font-face {
+  font-family: Alumna;
+  src: url(../fonts/ALS-Alumna.otf);
+}
+input::-webkit-input-placeholder {
+  color: darkslategray;
+  font-family: Alumna;
+}
+.modalwin {
+  height: 180px;
+  width: 300px;
+  border: 3px outset gray;
+  background: darkslategray;
+  top: 20%; /* отступ сверху */
+  right: 0;
+  left: 0;
+  font-size: 14px;
+  margin: 0 auto;
+  z-index:2; /* поверх всех */
+  display: none;  /* сначала невидим */
+  position: fixed; /* фиксированное позиционирование, окно стабильно при прокрутке */
+  padding: 15px;
+  border: 1px solid azure;
+  font-family: Alumna;
+}
+#register{
+  font-size: 25px;
+  margin-top: 18px;
+}
+#message{
+  font-size: 20px;
+  font-family: Alumna;
+  text-align: center;
+}
+#registration{
+  background: darkslategray;
+  color: azure;
+  font-size: 25px;
+  cursor: pointer;
+  border: none;
+  font-family: Alumna;
+}
+.btn-register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

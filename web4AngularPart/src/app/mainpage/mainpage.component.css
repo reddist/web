@@ -1,0 +1,48 @@
+
+font-face {
+  font-family: Alumna;
+  src: url(../fonts/ALS-Alumna.otf);
+}
+body {
+  height: 100%;
+  background: url(../patterns/anotherside.png) repeat repeat center center fixed;
+  /*-webkit-background-size: cover;*/
+  /*-moz-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-size: cover;*/
+  /*padding: 0;*/
+}
+#logout {
+  margin-left: calc(80% - 125px);
+  border: 2px solid azure;
+  background: darkslategray;
+  font-family: Alumna;
+  font-size: 25px;
+  color: azure;
+  margin-top: 3%;
+  cursor: pointer;
+}
+#refresh {
+  font-family: Alumna;
+  font-size: 25px;
+  color: azure;
+  margin: 15px calc(-80px + 50%);
+  /*margin-left: 44%;*/
+  /*margin-bottom: 30px;*/
+  background: darkslategray;
+  cursor: pointer;
+  border: 2px solid azure;
+  width: 160px;
+}
+#delete {
+  font-family: Alumna;
+  font-size: 25px;
+  color: azure;
+  margin: 15px calc(-110px + 50%);
+  /*margin-left: 44%;*/
+  /*margin-bottom: 30px;*/
+  background: darkslategray;
+  cursor: pointer;
+  border: 2px solid azure;
+  width: 220px;
+}

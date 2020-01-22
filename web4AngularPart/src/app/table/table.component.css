@@ -1,0 +1,20 @@
+#divresults{
+  font-family: Alumna;
+  color: azure;
+  font-size: 25px;
+  background: darkslategray;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 10%;
+}
+@font-face {
+  font-family: Alumna;
+  src: url(../fonts/ALS-Alumna.otf);
+}
+#table{
+  border: transparent;
+  text-align: center;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: auto;
+  font-family: Alumna;
+}
